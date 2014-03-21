@@ -1,2 +1,2 @@
--practica-grups-teatre
+practica-grups-teatre
 ======================
