@@ -1,5 +1,4 @@
 from django.conf.urls import patterns, include, url
-
 from iteatre import views
 
 # Uncomment the next two lines to enable the admin:
@@ -24,10 +23,18 @@ urlpatterns = patterns('',
     url(r'^grupsdeteatre/(\d{1,2})/$', views.grupdeteatrepage, name='grupdeteatrepage'),
     url(r'^alumnat/(\d{1,2})/$', views.alumnaepage, name='alumnaepage'),
     
-    url(r'^json/ajuntaments/$', views.ajuntamentsjsonpage, name='ajuntamentsjsonpage'),
-    url(r'^json/grupsdeteatre/$', views.grupsdeteatrejsonpage, name='grupsdeteatrejsonpage'),
-    url(r'^json/alumnat/$', views.alumnatjsonpage, name='alumnatjsonpage'),
-    url(r'^(\w+)/ajuntaments/(\d{1,2})/$', views.ajuntamentjsonpage, name='ajuntamentjsonpage'),
-    # url(r'^(\w+)/grupsdeteatre/(\d{1,2})/$', views.grupdeteatrejsonpage, name='grupdeteatrejsonpage'),
-	# url(r'^(\w+)/alumnat/(\d{1,2})/$', views.alumnaejsonpage, name='alumnaejsonpage'),
+    #url(r'^json/ajuntaments/$', views.ajuntaments_json_page, name='ajuntaments_json_page'),
+    url(r'^(\w+)/grupsdeteatre/(\d{1,2})$', views.one_grup_de_teatre_json_page, name='grupsdeteatrejsonpage'),
+    url(r'^(\w+)/alumnat/$', views.all_alumnat_json_page, name='alumnatjsonpage'),
+    url(r'^(\w+)/ajuntaments/(\d{1,2})/$', views.one_Ajuntaments_json_page, name='ajuntaments_json_page'),
+    url(r'^(\w+)/ajuntaments/$', views.all_Ajuntaments_json_page, name='ajuntaments_json_page'),
+    url(r'^(\w+)/grupsdeteatre/$', views.all_grup_de_teatre_json_page, name='grupsdeteatrejsonpage'),
+	url(r'^(\w+)/alumnat/(\d{1,2})/$', views.alumnae_json_page, name='alumnaejsonpage'),
 )
+
+
+
+
+
+
+

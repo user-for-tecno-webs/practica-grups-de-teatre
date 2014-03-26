@@ -5,6 +5,7 @@ from django.template.loader import get_template
 from iteatre.models import *
 import json
 from django.core.serializers.json import DjangoJSONEncoder
+from django.utils import simplejson
 
 def ajuntamentspage(request):
 	try:
@@ -87,7 +88,22 @@ def alumnaepage(request, alumnaeId):
 	output = template.render(variables)
 	return HttpResponse(output)
 
-def ajuntamentsjsonpage(request, tipus, id):
+
+def one_Ajuntaments_json_page(request, tipus, idAjuntament):
+	try:
+		if tipus=='json':
+			a = Ajuntament.objects.get(id = int(idAjuntament))
+			list_ajuntaments = []
+			ajuntament = {"id": a.id, "nom": a.nom}
+			list_ajuntaments.append(ajuntament)
+			result_json = {"Ajuntament":list_ajuntaments}
+	except:
+		raise Http404('Error al generar la pagina')
+
+	return HttpResponse(json.dumps(result_json))
+
+
+def all_Ajuntaments_json_page(request, tipus):
 	try:
 		if tipus=='json':
 			ajuntaments = Ajuntament.objects.all()
@@ -95,62 +111,71 @@ def ajuntamentsjsonpage(request, tipus, id):
 	        for a in ajuntaments:
 		    	ajuntament = {"id": a.id, "nom": a.nom}
 		    	list_ajuntaments.append(ajuntament)
-			ajuntaments = json.dumps({"ajuntaments": list_ajuntaments}, cls=DjangoJSONEncoder)
-			variables = Context({
-		    		'ajuntaments.id': ajuntaments.get("id")
-					'ajuntaments.nom': ajuntaments.get("nom")
-					'ajuntaments.cif': ajuntaments.get("cif")
-				})
-		# else: cas per a XML	
+			ajuntaments = {"Ajuntaments": list_ajuntaments}
+
 	except:
-		raise Http404('Error al generar la pagina.')
+		raise Http404('Error al generar la pagina')
 
-	template = get_template('ajuntamentsjsonpage.html')
-	
+	return HttpResponse(json.dumps(ajuntaments))
 
-	variables = Context({
-		'ajuntaments': ajuntaments
-		})
-	"""
-	
-	"""	
-	output = template.render(variables)
-	return HttpResponse(output, mimetype="aplicationjson")
-
-def grupsdeteatrejsonpage(request):
+def all_grup_de_teatre_json_page(request, tipus):
 	try:
-		grups = GrupTeatre.objects.all()
+		if tipus=='json':
+			grups_teatre = GrupTeatre.objects.all()
+			list_grups = []
+	        for grup in grups_teatre:
+		    	grup_teatre = {"id": grup.id, "nom": grup.nom}
+		    	list_grups.append(grup_teatre)
+			grup_teatre_json = {"Grups Teatre": list_grups}
+
 	except:
-		raise Http404('Error al generar la pagina.')
+		raise Http404('Error al generar la pagina')
 
-	template = get_template('grupsdeteatrejsonpage.html')
-	
-	list_grups = []
-	for g in grups:
-		grup = {"nom": g.nom, "data comencament": g.data_comencament}
-		list_grups.append(grup)
-	grups = json.dumps({"grups de teatre": list_grups}, indent=4, cls=DjangoJSONEncoder)
-	variables = Context({
-		'grupsdeteatre': grups
-		})
-	output = template.render(variables)
-	return HttpResponse(output, mimetype="aplicationjson")
+	return HttpResponse(json.dumps(grup_teatre_json))
 
-def alumnatjsonpage(request):
+def one_grup_de_teatre_json_page(request, tipus, idGrupTeatre):
 	try:
-		alumnat = Alumnat.objects.all()
-	except:
-		raise Http404('Error al generar la pagina.')
+		if tipus=='json':
+			grup = GrupTeatre.objects.get(id = int(idGrupTeatre))
+			list_grups = []
+			grup_teatre = {"id": grup.id, "nom": grup.nom}
+			list_grups.append(grup_teatre)
+			grup_teatre_json = {"Grups Teatre": list_grups}
 
-	template = get_template('alumnatjsonpage.html')
-	
-	list_alumnat = []
-	for al in alumnat:
-		alumnae = {"nom": al.nom, "Tel. personal": al.telefon_personal}
-		list_alumnat.append(alumnae)
-	alumnat = json.dumps({"alumnat": list_alumnat}, indent=4, cls=DjangoJSONEncoder)
-	variables = Context({
-		'alumnat': alumnat
-		})
-	output = template.render(variables)
-	return HttpResponse(output, mimetype="aplicationjson")
+	except:
+		raise Http404('Error al generar la pagina')
+
+	return HttpResponse(json.dumps(grup_teatre_json))
+
+def all_alumnat_json_page(request, tipus):
+	try:
+		if tipus=='json':
+			alumnat = Alumnat.objects.all()
+			list_alumnat = []
+	        for al in alumnat:
+		    	alumnae = {"nom": al.nom, "Tel. personal": al.telefon_personal}
+		    	list_alumnat.append(alumnae)
+			alumnae_json = {"Alumnat": list_alumnat}
+
+	except:
+		raise Http404('Error al generar la pagina')
+
+	return HttpResponse(json.dumps(alumnae_json))
+
+def alumnae_json_page(request, tipus, idAlumne):
+	try:
+		if tipus=='json':
+			al = Alumnat.objects.get(id = int(idAlumne))
+			list_alumnat = []
+			alumnae = {"nom": al.nom, "Tel. personal": al.telefon_personal}
+			list_alumnat.append(alumnae)
+			alumnae_json = {"Alumne/a": list_alumnat}
+
+	except:
+		raise Http404('Error al generar la pagina')
+
+	return HttpResponse(json.dumps(alumnae_json))
+
+
+
+
