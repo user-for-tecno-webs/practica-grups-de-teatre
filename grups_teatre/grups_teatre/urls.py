@@ -15,12 +15,14 @@ urlpatterns = patterns('',
 
     # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^ajuntaments/$', views.ajuntamentspage, name='ajuntamentspage'),
-    url(r'^grupsdeteatre/$', views.grupsdeteatrepage, name='grupsdeteatrepage'),
-    url(r'^alumnat/$', views.alumnatpage, name='alumnatpage'),
+    
+    url(r'^ajuntaments/$', views.ajuntaments_page, name='ajuntamentspage'),
+    url(r'^ajuntaments/(\d{1,2})/$', views.ajuntament_page, name='ajuntamentspage'),
 
-    url(r'^ajuntaments/(\d{1,2})/$', views.ajuntamentpage, name='ajuntamentspage'),
+    url(r'^grupsdeteatre/$', views.grupsdeteatrepage, name='grupsdeteatrepage'),
     url(r'^grupsdeteatre/(\d{1,2})/$', views.grupdeteatrepage, name='grupdeteatrepage'),
+
+    url(r'^alumnat/$', views.alumnatpage, name='alumnatpage'),
     url(r'^alumnat/(\d{1,2})/$', views.alumnaepage, name='alumnaepage'),
     
     #url(r'^json/ajuntaments/$', views.ajuntaments_json_page, name='ajuntaments_json_page'),
