@@ -1,0 +1,20 @@
+<html>
+	<head>
+	<title>Alumnat</title>
+	</head>
+<body>
+	<h1>Alumnat</h1>
+	{% if alumnat %}
+	<ul>
+	{% for al in alumnat %}
+	<li>
+		<a href="/alumnat/{{al.id}}">{{al.nom}}</a>
+	</li>
+	{% endfor %}
+	</ul>
+	{% else %}
+	<p>No hi ha alumna/e de teatre creats. </p>
+	{% endif %}
+</body>	
+</html>
+

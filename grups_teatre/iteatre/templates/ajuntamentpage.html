@@ -1,0 +1,20 @@
+<html>
+	<head>
+	<title>Ajuntament</title>
+	</head>
+<body>
+	<h1>Ajuntament</h1>
+	{% if ajuntament %}
+	<ul>	 
+		<li>
+		Nom: {{ajuntament.nom}} adreca: {{ajuntament.adreca}}
+		</li>
+	</ul>
+	{% else %}
+	<p>No hi ha ajuntament. </p>
+	{% endif %}
+	
+</body>	
+</html>
+
+

@@ -1,0 +1,17 @@
+<html>
+	<head>
+	<title>Grup de teatre</title>
+	</head>
+<body>
+	<h1>Grup de teatre</h1>
+	{% if grupdeteatre %}
+	<ul>
+		<li>
+		{{grupdeteatre.nom}} |{{grupdeteatre.data_comencament}} | {{grupdeteatre.data_finalitzacio}} | {{grupdeteatre.dies_i_horaris}}
+		</li>
+	</ul>
+	{% else %}
+	<p>No hi ha grup de teatre creat. </p>
+	{% endif %}
+</body>	
+</html>

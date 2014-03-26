@@ -1,0 +1,17 @@
+<html>
+	<head>
+	<title>Alumna/e</title>
+	</head>
+<body>
+	<h1>Alumna/e</h1>
+	{% if alumnae %}
+	<ul>
+		<li>
+		{{alumnae.nom}} | {{alumnae.telefon_personal}} | {{alumnae.telefon_persona_encarregada}} | {{alumnae.email}}
+		</li>
+	</ul>
+	{% else %}
+	<p>No hi ha alume de teatre creats. </p>
+	{% endif %}
+</body>	
+</html>

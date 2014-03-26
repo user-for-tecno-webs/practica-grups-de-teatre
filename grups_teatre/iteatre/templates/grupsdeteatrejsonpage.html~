@@ -1,0 +1,15 @@
+<html>
+	<head>
+	<title>Grups de teatre</title>
+	</head>
+<body>
+	<h1>Grups de teatre</h1>
+	{% if grupsdeteatre %}
+	{{ajuntaments}}
+	{% else %}
+	<p>No hi ha ajuntaments.</p>
+	{% endif %}
+	
+</body>	
+</html>
+
