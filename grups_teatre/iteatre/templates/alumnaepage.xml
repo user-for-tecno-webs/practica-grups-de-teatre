@@ -1,0 +1,7 @@
+<xml version="1.0" encoding="UTF-8"?>
+<alumne>
+	<id>{{alumnae.id}}</id>
+	<nom>{{alumnae.nom}}</nom>
+	<telefon_personal>{{alumnae.telefon_personal}}</telefon_personal>
+	<email>{{alumnae.email}}</email>
+</alumne>

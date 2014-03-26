@@ -164,17 +164,25 @@ def all_alumnat_json_page(request, tipus):
 
 def alumnae_json_page(request, tipus, idAlumne):
 	try:
+		al = Alumnat.objects.get(id = int(idAlumne))	 
 		if tipus=='json':
-			al = Alumnat.objects.get(id = int(idAlumne))
 			list_alumnat = []
 			alumnae = {"nom": al.nom, "Tel. personal": al.telefon_personal}
 			list_alumnat.append(alumnae)
 			alumnae_json = {"Alumne/a": list_alumnat}
-
+			return HttpResponse(json.dumps(alumnae_json))
+		elif tipus=='xml':
+		    
+			template = get_template('alumnaepage.xml')
+			variables = Context({
+						'alumnae': al
+						})
+			output = template.render(variables)
+			return HttpResponse(output)		 
 	except:
 		raise Http404('Error al generar la pagina')
 
-	return HttpResponse(json.dumps(alumnae_json))
+	
 
 
 
