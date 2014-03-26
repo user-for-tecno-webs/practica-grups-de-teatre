@@ -18,20 +18,18 @@ urlpatterns = patterns('',
     
     url(r'^ajuntaments/$', views.ajuntaments_page, name='ajuntamentspage'),
     url(r'^ajuntaments/(\d{1,2})/$', views.ajuntament_page, name='ajuntamentspage'),
-
-    url(r'^grupsdeteatre/$', views.grupsdeteatrepage, name='grupsdeteatrepage'),
-    url(r'^grupsdeteatre/(\d{1,2})/$', views.grupdeteatrepage, name='grupdeteatrepage'),
-
-    url(r'^alumnat/$', views.alumnatpage, name='alumnatpage'),
-    url(r'^alumnat/(\d{1,2})/$', views.alumnaepage, name='alumnaepage'),
-    
-    #url(r'^json/ajuntaments/$', views.ajuntaments_json_page, name='ajuntaments_json_page'),
-    url(r'^(\w+)/grupsdeteatre/(\d{1,2})$', views.one_grup_de_teatre_json_page, name='grupsdeteatrejsonpage'),
-    url(r'^(\w+)/alumnat/$', views.all_alumnat_json_page, name='alumnatjsonpage'),
-    url(r'^(\w+)/ajuntaments/(\d{1,2})/$', views.one_Ajuntaments_json_page, name='ajuntaments_json_page'),
     url(r'^(\w+)/ajuntaments/$', views.all_Ajuntaments_json_page, name='ajuntaments_json_page'),
+    url(r'^(\w+)/ajuntaments/(\d{1,2})/$', views.one_Ajuntaments_json_page, name='ajuntaments_json_page'),
+
+    url(r'^grupsdeteatre/$', views.grups_de_teatre_page, name='grupsdeteatrepage'),
+    url(r'^grupsdeteatre/(\d{1,2})/$', views.grup_de_teatre_page, name='grupdeteatrepage'),
     url(r'^(\w+)/grupsdeteatre/$', views.all_grup_de_teatre_json_page, name='grupsdeteatrejsonpage'),
-	url(r'^(\w+)/alumnat/(\d{1,2})/$', views.alumnae_json_page, name='alumnaejsonpage'),
+    url(r'^(\w+)/grupsdeteatre/(\d{1,2})$', views.one_grup_de_teatre_json_page, name='grupsdeteatrejsonpage'),
+
+    url(r'^alumnat/$', views.alumnat_page, name='alumnatpage'),
+    url(r'^alumnat/(\d{1,2})/$', views.alumnae_page, name='alumnaepage'),
+    url(r'^(\w+)/alumnat/$', views.all_alumnat_jx_page, name='alumnatjsonpage'),
+    url(r'^(\w+)/alumnat/(\d{1,2})/$', views.alumnae_jx_page, name='alumnaejsonpage'),	
 )
 
 

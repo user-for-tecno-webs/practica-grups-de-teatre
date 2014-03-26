@@ -34,7 +34,7 @@ def ajuntament_page(request, ajuntamentid):
 	output = template.render(variables)
 	return HttpResponse(output)
 
-def grupsdeteatrepage(request):
+def grups_de_teatre_page(request):
 	try:
 		grupsdeteatre = GrupTeatre.objects.all()
 	except:
@@ -47,7 +47,7 @@ def grupsdeteatrepage(request):
 	output = template.render(variables)
 	return HttpResponse(output)
 
-def grupdeteatrepage(request, grupId):
+def grup_de_teatre_page(request, grupId):
 	try:
 		grupId = int(grupId)
 		grupdeteatre = GrupTeatre.objects.get(id=grupId)
@@ -61,7 +61,7 @@ def grupdeteatrepage(request, grupId):
 	output = template.render(variables)
 	return HttpResponse(output)	
 	
-def alumnatpage(request):
+def alumnat_page(request):
 	try:
 		alumnat = Alumnat.objects.all()
 	except:
@@ -74,7 +74,7 @@ def alumnatpage(request):
 	output = template.render(variables)
 	return HttpResponse(output)
 
-def alumnaepage(request, alumnaeId):
+def alumnae_page(request, alumnaeId):
 	try:
 		alumnaeId = int(alumnaeId)
 		alumnae = Alumnat.objects.get(id=alumnaeId)
@@ -147,7 +147,7 @@ def one_grup_de_teatre_json_page(request, tipus, idGrupTeatre):
 
 	return HttpResponse(json.dumps(grup_teatre_json))
 
-def all_alumnat_json_page(request, tipus):
+def all_alumnat_jx_page(request, tipus):
 	try:
 		if tipus=='json':
 			alumnat = Alumnat.objects.all()
@@ -162,7 +162,7 @@ def all_alumnat_json_page(request, tipus):
 
 	return HttpResponse(json.dumps(alumnae_json))
 
-def alumnae_json_page(request, tipus, idAlumne):
+def alumnae_jx_page(request, tipus, idAlumne):
 	try:
 		al = Alumnat.objects.get(id = int(idAlumne))	 
 		if tipus=='json':
@@ -176,10 +176,6 @@ def alumnae_json_page(request, tipus, idAlumne):
 			variables = Context({
 						'alumnae': al
 						})
-			#output = template.render(variables)
-			#data = serializers.serialize('xml',Alumnat.objects.all(),fields=('id','nom'))
-			#return render_to_response('alumnaepage.xml',{'alumnae.id':al.id})		 
-			#return HttpResponse(data)
 			print "aqui"
 			t = loader.get_template('alumnaepage.xml')			
 			c = Context(variables)
