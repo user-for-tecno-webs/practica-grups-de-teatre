@@ -3,15 +3,31 @@
 	<title>Alumna/e</title>
 	</head>
 <body>
-	<h1>Alumna/e</h1>
-	{% if alumnae %}
-	<ul>
-		<li>
-		{{alumnae.nom}} | {{alumnae.telefon_personal}} | {{alumnae.telefon_persona_encarregada}} | {{alumnae.email}}
-		</li>
-	</ul>
+	{% if user.username %}
+		<h1>Alumna/e</h1>
+		{% if alumnae %}
+		<ul>
+			<li>nom: {{alumnae.nom}}</li>
+			<li>telefon_personal: {{alumnae.telefon_personal}}</li>
+			<li>telefon_persona_encarregada: {{alumnae.telefon_persona_encarregada}}</li>
+			<li>email: {{alumnae.email}}</li>
+			<li>nif_nie: {{alumnae.nif_nie}}</li>
+			<li>compte_bancari: {{alumnae.compte_bancari}}</li>
+			<li>data_naixement: {{alumnae.data_naixement}}</li>
+			<li>curs: {{alumnae.curs}}</li>
+			<li>sexe: {{alumnae.sexe}}</li>
+			<li>pais: {{alumnae.pais}}</li>
+			<li>grup_teatre: {{alumnae.grup_teatre}}</li>
+		</ul>
+		{% else %}
+		<p>No hi ha alume de teatre creats. </p>
+		{% endif %}
+		<a href="/alumnat">Tornar al Alumnat</a>
+		<br/><br/>
+		<a href="/">Tornar al Inici</a>
 	{% else %}
-	<p>No hi ha alume de teatre creats. </p>
+	<p>has de loguejiar <a href="/login/">sign in</a>
+	per veure informacions.</p>
 	{% endif %}
 </body>	
 </html>

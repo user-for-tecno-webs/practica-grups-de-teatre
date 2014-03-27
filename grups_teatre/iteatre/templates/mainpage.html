@@ -5,12 +5,17 @@
 <body>
 	<h1>{{ pagetitle }}</h1>
 	{% if user.username %}
-	<p>Benvingut {{ user.username }}!
-	Aquí podrà gestionar els grups de teatre!</p>
+		<p>Benvingut {{ user.username }}!
+		Aquí podrà gestionar els grups de teatre!</p>
+		<ul>
+			<li><a href="/ajuntaments/">Ajuntaments</a></li>
+			<li><a href="/grupsdeteatre/">Grups de Teatre</a></li>
+			<li><a href="/alumnat/">Alumnat</a></li>
+		</ul>
 	{% else %}
-	<p>Benvingut no ningú:
-	Obligatori fer <a href="/login/">sign in</a>
-	per gestionar sobres.</p>
+		<p>No has loguejat:
+		Obligatori fer <a href="/login/">sign in</a>
+		per poder gestionar.</p>
 	{% endif %}
 </body>
 </html>

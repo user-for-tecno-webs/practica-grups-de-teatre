@@ -3,17 +3,23 @@
 	<title>Alumnat</title>
 	</head>
 <body>
-	<h1>Alumnat</h1>
-	{% if alumnat %}
-	<ul>
-	{% for al in alumnat %}
-	<li>
-		<a href="/alumnat/{{al.id}}">{{al.nom}}</a>
-	</li>
-	{% endfor %}
-	</ul>
+	{% if user.username %}
+		<h1>Alumnat</h1>
+		{% if alumnat %}
+		<ul>
+		{% for al in alumnat %}
+		<li>
+			<a href="/alumnat/{{al.id}}">{{al.nom}}</a>
+		</li>
+		{% endfor %}
+		</ul>
+		{% else %}
+		<p>No hi ha alumna/e de teatre creat. </p>
+		{% endif %}
+		<a href="/">Tornar al Inici</a>
 	{% else %}
-	<p>No hi ha alumna/e de teatre creat. </p>
+	<p>has de loguejiar <a href="/login/">sign in</a>
+	per veure informacions.</p>
 	{% endif %}
 </body>	
 </html>

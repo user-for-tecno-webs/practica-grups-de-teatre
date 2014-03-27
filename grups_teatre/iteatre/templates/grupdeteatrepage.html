@@ -3,15 +3,26 @@
 	<title>Grup de teatre </title>
 	</head>
 <body>
-	<h1>Grup de teatre</h1>
-	{% if grupdeteatre %}
-	<ul>
-		<li>
-		{{grupdeteatre.nom}} |{{grupdeteatre.data_comencament}} | {{grupdeteatre.data_finalitzacio}} | {{grupdeteatre.dies_i_horaris}}
-		</li>
-	</ul>
+	{% if user.username %}
+		<h1>Grup de teatre</h1>
+		{% if grupdeteatre %}
+		<ul>
+			<li>ajuntament: {{grupdeteatre.ajuntament}}</li>
+			<li>nom: {{grupdeteatre.nom}}</li>
+			<li>data_comencament: {{grupdeteatre.data_comencament}}</li>
+			<li>data_finalitzacio: {{grupdeteatre.data_finalitzacio}}</li>
+			<li>dies_i_horaris: {{grupdeteatre.dies_i_horaris}}</li>
+			<li>user: {{grupdeteatre.user}}</li>
+		</ul>
+		{% else %}
+		<p>No hi ha grup de teatre creat. </p>
+		{% endif %}
+		<a href="/grupsdeteatre">Tornar al Grups de Teatre</a>
+		<br/><br/>
+		<a href="/">Tornar al Inici</a>
 	{% else %}
-	<p>No hi ha grup de teatre creat. </p>
+	<p>has de loguejiar <a href="/login/">sign in</a>
+	per veure informacions.</p>
 	{% endif %}
 </body>	
 </html>
