@@ -1,13 +1,13 @@
 # Create your views here.
 from django.http import HttpResponse, Http404
-from django.template import Context
 from django.template.loader import get_template
+from django.template import loader, Context, Template
 from iteatre.models import *
-import json
-from django.core.serializers.json import DjangoJSONEncoder
 from django.utils import simplejson
+from django.shortcuts import render_to_response
+import json
 
-def ajuntamentspage(request):
+def ajuntaments_page(request):
 	try:
 		ajuntaments = Ajuntament.objects.all()
 	except:
@@ -20,7 +20,7 @@ def ajuntamentspage(request):
 	output = template.render(variables)
 	return HttpResponse(output)
 
-def ajuntamentpage(request, ajuntamentid):
+def ajuntament_page(request, ajuntamentid):
 	try:
 		ajuntamentid = int(ajuntamentid)
 		ajuntament = Ajuntament.objects.get(id=ajuntamentid)
@@ -156,7 +156,19 @@ def all_alumnat_json_page(request, tipus):
 		    	alumnae = {"nom": al.nom, "Tel. personal": al.telefon_personal}
 		    	list_alumnat.append(alumnae)
 			alumnae_json = {"Alumnat": list_alumnat}
-
+			return HttpResponse(json.dumps(alumnae_json))
+		elif tipus=='xml':
+			template = get_template('alumnatpage.xml')
+			variables = Context({
+						'alumnat': alumnat
+						})
+			#output = template.render(variables)
+			#data = serializers.serialize('xml',Alumnat.objects.all(),fields=('id','nom'))
+			#return render_to_response('alumnaepage.xml',{'alumnae.id':al.id})		 
+			#return HttpResponse(data)
+			t = loader.get_template('alumnatpage.xml')			
+			c = Context(variables)
+    		return HttpResponse(t.render(c), mimetype="application/xml")
 	except:
 		raise Http404('Error al generar la pagina')
 
@@ -171,13 +183,18 @@ def alumnae_json_page(request, tipus, idAlumne):
 			list_alumnat.append(alumnae)
 			alumnae_json = {"Alumne/a": list_alumnat}
 			return HttpResponse(json.dumps(alumnae_json))
-		elif tipus=='xml':
+		elif tipus=='xml':		    
 			template = get_template('alumnaepage.xml')
 			variables = Context({
-						'alumnae': alumnae
+						'alumnae': al
 						})
-			output = template.render(variables)
-			return HttpResponse(output)		 
+			#output = template.render(variables)
+			#data = serializers.serialize('xml',Alumnat.objects.all(),fields=('id','nom'))
+			#return render_to_response('alumnaepage.xml',{'alumnae.id':al.id})		 
+			#return HttpResponse(data)
+			t = loader.get_template('alumnaepage.xml')			
+			c = Context(variables)
+    		return HttpResponse(t.render(c), mimetype="application/xml")
 	except:
 		raise Http404('Error al generar la pagina')
 

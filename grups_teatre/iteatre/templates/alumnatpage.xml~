@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alumnat>
+{% if alumnat %}
+	{% for a in alumnat %}
+		<alumne>
+		<id>{{a.id}}</id>
+		<nom>{{a.nom}}</nom>
+		<telefon_personal>{{a.telefon_personal}}</telefon_personal>
+		<email>{{a.email}}</email>
+		</alumne>
+{% endfor %}
+{% elif %}
+No hi ha alumna/e de teatre creat. 
+{% endif %}
+</alumnat>

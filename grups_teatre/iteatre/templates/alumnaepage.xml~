@@ -3,5 +3,6 @@
 	<id>{{alumnae.id}}</id>
 	<nom>{{alumnae.nom}}</nom>
 	<telefon_personal>{{alumnae.telefon_personal}}</telefon_personal>
-	<email>{{alumnae}}</email>
+	<email>{{alumnae.email}}</email>
 </alumne>
+
