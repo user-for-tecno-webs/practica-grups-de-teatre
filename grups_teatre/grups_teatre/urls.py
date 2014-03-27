@@ -13,8 +13,12 @@ urlpatterns = patterns('',
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
+
     # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),
+    
+    url(r'^$', mainpage, name='home'),
+    url(r'^login/$','django.contrib.auth.views.login'),
     
     url(r'^ajuntaments/$', views.ajuntaments_page, name='ajuntamentspage'),
     url(r'^ajuntaments/(\d{1,2})/$', views.ajuntament_page, name='ajuntamentspage'),
